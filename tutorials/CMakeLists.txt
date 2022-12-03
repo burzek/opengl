@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(opengl-tutorials VERSION 0.1.0)
 
-#include_directories(includes/)
 
 file(GLOB PROJECT_HEADERS includes/*.hpp includes/*.h)
 file(GLOB PROJECT_SOURCES *.cpp *.c)
@@ -26,6 +25,7 @@ include_directories(${GLFW_INCLUDE_DIRS})
 
 #executable    
 add_executable(${PROJECT_NAME} 
+    runner.cpp
     ${PROJECT_SOURCES} 
     ${PROJECT_HEADERS}
     ${PROJECT_CONFIGS}

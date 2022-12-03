@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+#include "includes/01_window.hpp"
+
 #define WINDOW_WIDTH  1024
 #define WINDOW_HEIGHT 768
 
@@ -226,22 +228,22 @@ void renderFrame(GLFWwindow* window, GLuint shaderProgram, GLuint vertexArrayObj
     glUseProgram(shaderProgram);
     glBindVertexArray(vertexArrayObject);
     //glDrawArrays(GL_TRIANGLES, 0, 3);   //for triangle
-    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);  //for EBO
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);  //for EBO
+    //glDrawArrays(GL_TRIANGLES, 0, 6);   //for arrays
     glBindVertexArray(0);
 
 }
 
-/** MAIN **/
-int main(int argc, char const *argv[]) {
+void window_01_run() {
 
     glfwInitialize();
     GLFWwindow* window = createWindow();
 
     GLuint shaderProgram = prepareShaders();
     if (shaderProgram == 0) {
-        return 0;
+        return;
     }
-    GLuint vertexArrayObject = prepareTwoTrianglesArrays();
+    GLuint vertexArrayObject = prepareTwoTrianglesEBO();
 
     while(!glfwWindowShouldClose(window)){
         processInput(window);
@@ -254,5 +256,4 @@ int main(int argc, char const *argv[]) {
 
     glfwShutdown();
 
-    return 0;
 }
